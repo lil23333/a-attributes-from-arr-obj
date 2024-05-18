@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>mrBin</title>
+
+
+</head>
+
+<body>
+<script>
+
+let arr = [
+    {
+        text:'111',
+        href: '1.html'
+    },
+    {
+        text:'222',
+        href: '2.html'
+    },
+    {
+        text:'333',
+        href: '3.html'
+    }
+];
+
+let  obj = arr.reduce((acc, {text,href}) => ({
+    text:[...acc.text,text],
+    href:[...acc.href,href],
+}),{text:[],href:[]});
+let arr1 = Object.values(obj)[0];
+let arr2 = Object.values(obj)[1];
+
+let obj1 = arr1.reduce((acc,n, i)=>(acc[n] = arr2[i],acc),{});
+
+for(let i = 0; i < 3; i++) {
+    let a = document.createElement('a');
+    a.setAttribute('href', Object.keys(obj1)[i]);
+    a.innerHTML = Object.values(obj1)[i];
+    document.body.appendChild(a);
+}
+
+</script>
+
+</body>
+</html>
+
